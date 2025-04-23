@@ -1,6 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './home/home.page';
 
 export const routes: Routes = [
-  { path: '', component: HomePage } // Basic route
+  { 
+    path: '',
+    loadComponent: () => import('./home/home.page').then(m => m.HomePage)
+  },
+  { 
+    path: 'details/:id',
+    loadComponent: () => import('./details/details.page').then(m => m.DetailsPage)
+  }
 ];
