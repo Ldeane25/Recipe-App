@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{ recipe?.strMeal }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-img 
+      [src]="recipe?.strMealThumb" 
+      [alt]="recipe?.strMeal"
+      class="recipe-image"
+    ></ion-img>
+  
+    <div class="ion-padding">
+      <h1>{{ recipe?.strMeal }}</h1>
+      <ion-text color="medium">
+        <p>{{ recipe?.strCategory }} • {{ recipe?.strArea }}</p>
+      </ion-text>
+  
+      <h2>Ingredients</h2>
+      <ion-list lines="none">
+        <ion-item *ngFor="let item of ingredients">
+          <ion-label>{{ item.measure }} {{ item.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+  
+      <h2>Instructions</h2>
+      <ion-text>
+        <p class="instructions">{{ recipe?.strInstructions }}</p>
+      </ion-text>
+    </div>
+  </ion-content>
