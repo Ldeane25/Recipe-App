@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from '../services/recipe.service';
 import { IonicModule } from '@ionic/angular';
 import { NgIf } from '@angular/common';
+import { IonContent,  IonHeader,IonButtons, IonBackButton, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+
+
 
 @Component({
   standalone: true,

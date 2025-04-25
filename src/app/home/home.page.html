@@ -1,17 +1,29 @@
-<!-- src/app/home/home.page.html -->
+
+<!-- Page Header -->
 <ion-header>
+  <!-- Toolbar with the page title -->
   <ion-toolbar>
+    <!-- Title of the page -->
     <ion-title>Recipes</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<!-- Main content section -->
 <ion-content>
+  <!-- Show the recipe list if 'recipes' is not empty -->
   <ion-list *ngIf="recipes">
+    <!-- Loop through the recipes and display each one -->
     <ion-item *ngFor="let recipe of recipes" (click)="openDetails(recipe.idMeal)">
+      <!-- Recipe thumbnail image -->
       <ion-thumbnail slot="start">
+        <!-- Display the recipe image -->
         <img [src]="recipe.strMealThumb" />
       </ion-thumbnail>
+      <!-- Display the recipe name -->
       <ion-label>{{ recipe.strMeal }}</ion-label>
     </ion-item>
   </ion-list>
-</ion-content>
+
+  <!-- Button to navigate to the Favorites page 
+  <ion-button expand="full" [routerLink]="['/favourites']">YOUR FAVOURITES</ion-button>
+</ion-content>-->
