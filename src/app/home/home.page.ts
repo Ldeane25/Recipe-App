@@ -1,37 +1,29 @@
+// src/app/home/home.page.ts
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RecipeService } from '../services/recipe.service';
-import { 
-  IonHeader, IonToolbar, IonTitle, IonContent, 
-  IonList, IonItem, IonThumbnail, IonLabel 
-} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent,
-    IonList, IonItem, IonThumbnail, IonLabel
-  ]
+  selector: 'app-home',
+  imports: [IonicModule, NgIf, NgFor],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit {
   recipes: any[] = [];
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit() {
-    this.loadRecipes();
+    this.recipeService.getRecipes().subscribe((data) => {
+      this.recipes = data.meals;
+    });
   }
 
-  loadRecipes() {
-    this.recipeService.getRecipes().subscribe({
-      next: (response) => {
-        this.recipes = response.meals || [];
-      },
-      error: (err) => {
-        console.error('API Error:', err);
-      }
-    });
+  openDetails(id: string) {
+    this.router.navigate(['/details', id]);
   }
 }

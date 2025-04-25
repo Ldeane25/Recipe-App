@@ -1,0 +1,23 @@
+<!-- src/app/favourites/favourites.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favourites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="favorites.length > 0; else noFavs">
+    <ion-item *ngFor="let recipe of favorites" (click)="openDetails(recipe.idMeal)">
+      <ion-thumbnail slot="start">
+        <img [src]="recipe.strMealThumb" />
+      </ion-thumbnail>
+      <ion-label>{{ recipe.strMeal }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noFavs>
+    <ion-item>
+      <ion-label>No favorites yet.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>
